@@ -10,6 +10,7 @@ class CategoryController extends Controller
     public function create(){
         return view('admin.category.index');
     }
+
     public function delete(Category $category){
         $category->delete();
         return redirect()->route('admin.category.index');
@@ -24,11 +25,13 @@ class CategoryController extends Controller
     public function show(Category $category){
         return view('admin.category.show', compact('category'));
     }
+
     public function store(StoreRequest $request){
         $data = $request->validated();
         Category::firstOrCreate($data);
         return redirect()->route('admin.category.index');
     }
+
     public function update(StoreRequest $request, Category $category){
         $data = $request->validated();
         $category->update($data);
